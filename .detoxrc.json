@@ -2,6 +2,12 @@
   "testRunner": "jest",
   "runnerConfig": "e2e/config.json",
   "devices": {
+    "simulator": {
+      "type": "ios.simulator",
+      "device": {
+        "type": "iPhone 11"
+      }
+    },
     "emulator": {
       "type": "android.emulator",
       "device": {
@@ -10,6 +16,16 @@
     }
   },
   "apps": {
+    "ios.release": {
+      "type": "ios.app",
+      "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/ReactNativeConfigureDetox.app",
+      "build": "export RCT_NO_LAUNCH_PACKAGER=true && xcodebuild -workspace ios/ReactNativeConfigureDetox.xcworkspace -scheme ReactNativeConfigureDetox -configuration Release -sdk iphonesimulator -derivedDataPath ios/build"
+    },
+    "ios.debug": {
+      "type": "ios.app",
+      "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/ReactNativeConfigureDetox.app",
+      "build": "xcodebuild -workspace ios/ReactNativeConfigureDetox.xcworkspace -scheme ReactNativeConfigureDetox -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build"
+    },
     "android.debug": {
       "type": "android.apk",
       "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
@@ -29,6 +45,14 @@
     "android.emu.release": {
       "device": "emulator",
       "app": "android.release"
+    },
+    "ios.sim.release": {
+      "device": "simulator",
+      "app": "ios.release"
+    },
+    "ios.sim.debug": {
+      "device": "simulator",
+      "app": "ios.debug"
     }
   }
 }
